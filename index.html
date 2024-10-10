@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recargar con OnRamper</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #00b0ff, #1de9b6);
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .open-button {
+            padding: 15px 30px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #00b0ff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .open-button:hover {
+            background-color: #0091ea;
+            transform: translateY(-2px);
+        }
+
+        .open-button:active {
+            background-color: #007bb5;
+            transform: translateY(0);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <h1>Recargar con OnRamper</h1>
+    <p>Usa OnRamper para recargar tu cuenta de forma fácil y segura.</p>
+    <a href="https://buy.onramper.com?apiKey=pk_test_01J7M57GF4A5MG02DN19AG30HY&mode=buy" target="_blank" class="open-button">Iniciar Recarga</a>
+</div>
+
+</body>
+</html>
