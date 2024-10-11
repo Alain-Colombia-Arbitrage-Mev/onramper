@@ -20,4 +20,14 @@ Before getting started, make sure you have the following installed:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone [https://github.com/your-username/onramper-api-integration.git](https://github.com/winos/onramper.git)
+   git clone https://github.com/winos/onramper.git
+   npm install
+    ```
+
+## Run
+
+1. Clone this repository to your local machine:
+
+   ```bash
+   node webhook.js
+    ```
