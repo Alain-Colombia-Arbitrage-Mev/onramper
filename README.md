@@ -29,5 +29,5 @@ Before getting started, make sure you have the following installed:
 1. Clone this repository to your local machine:
 
    ```bash
-   node webhook.js
+   node server.js
     ```
