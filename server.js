@@ -41,7 +41,28 @@ app.post('/webhook', (req, res) => {
 });
 
 
-app.post('/gateway', (req, res) => {
+async function sendTransactionToOnramper(transactionData) {
+  try {
+    const endpoint = 'https://api.onramper.com/checkout/intent';
+    
+    const response = await axios.post(endpoint, transactionData, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'pk_prod_01J8SF5F5EWYY7Z6W7AV1KW1Q5'  // Reemplaza con tu API key si es necesario
+      }
+    });
+
+    console.log('Transacción exitosa:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error en la transacción:', error.response?.data || error.message);
+    throw error;
+  }
+}
+
+
+
+app.post('/gateway', async (req, res) => {
   const {
       user, 
       email,
@@ -55,19 +76,57 @@ app.post('/gateway', (req, res) => {
   const response = {}
   // Log para verificar que los datos han sido recibidos correctamente
   console.log('gateway oonramper data received:', req.body);
+  try {
 
-  response.message = "The Onramper gateway accept your transaction"
-  response.status = true
-  response.data = req.body
-  // Procesar los datos como guardar en base de datos o notificar de algún evento
-  // if (status === 'completed') {
-  //   console.log(`Transaction ${transactionId} completed.`);
-  // } else if (status === 'failed') {
-  //   console.log(`Transaction ${transactionId} failed.`);
-  // }
+    const transactionData = {
+      onramp: "payfura",
+      source: "eur",
+      destination: "usdt",
+      amount: 100,
+      type: "buy",
+      paymentMethod: "creditcard",
+      network: "trc20",
+      uuid: "6756256e-d07f-42f0-a873-4d992eec8a2e",
+      partnerContext: "123-CLIENT-ORDER-ID-456",
+      originatingHost: "buy.onramper.com",
+      metaData: {
+        quoteId: "01H985NH79FW951SKERQ45JMYXpayfura"
+      },
+      wallet: {
+        address: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+      },
+      supportedParams: {
+        theme: {
+          isDark: false,
+          themeName: "light-theme",
+          primaryColor: "#241D1C",
+          secondaryColor: "#FFFFFF",
+          primaryTextColor: "#141519",
+          secondaryTextColor: "#6B6F80",
+          cardColor: "#F6F7F9",
+          borderRadius: null
+        },
+        partnerData: {
+          redirectUrl: {
+            success: "http%3A%2F%2Fredirecturl.com%2F"
+          }
+        }
+      }
+    };
 
-  // Respuesta 200 OK para confirmar que recibimos el webhook
-  res.status(200).json(response);
+    
+    let result = await sendTransactionToOnramper(transactionData)
+
+    response.message = "The Onramper gateway accept your transaction"
+    response.status = true
+    response.data = result
+  
+    res.status(200).json(response);
+  } catch (error) {
+    console.error('Error en la transacción:', error.message);
+    throw error;
+  }
+
 });
 
 // Endpoint para obtener las monedas soportadas
