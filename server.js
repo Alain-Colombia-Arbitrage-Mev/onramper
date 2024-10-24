@@ -79,8 +79,8 @@ app.post('/gateway', async (req, res) => {
   try {
 
     const transactionData =  {}
+    
     transactionData.payload = {
-
       onramp: "sardine",
       source: "eur",
       destination: "btc",

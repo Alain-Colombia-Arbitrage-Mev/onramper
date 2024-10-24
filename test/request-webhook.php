@@ -1,8 +1,8 @@
 <?php
 
 function send($data) {
-   // $url = 'http://localhost:3000/gateway';
-    $url = 'https://webhook.usvptoken.com/gateway';
+    $url = 'http://localhost:3000/gateway';
+   // $url = 'https://webhook.usvptoken.com/gateway';
     $bearerToken = 'Mfeqr6ufjabYGFPGGBObdr1tug1qKEkNHR76iWjkcyLjN3nrTpbvTxognQArQTQr6fpPJY0kRAYTxN+JGWCL+Q==';
     $curl = curl_init($url);
     curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
@@ -20,7 +20,6 @@ function send($data) {
 
 function testWebhookOnramperSuccess() {
     $params = [
-        'apiKey'             => 'your_api_key_here',
         'country'            => 'US',
         'inAmount'           => 100.50,
         'onramp'             => 'example_onramp',
