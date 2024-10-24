@@ -1,16 +1,9 @@
 const express = require('express');
 const axios = require('axios');
-const path = require('path'); // Añadido el módulo path
 const app = express();
 
-// Middleware para servir archivos estáticos y parsear JSON
-app.use(express.static(path.join(__dirname, 'public')));
+// Middleware para parsear el cuerpo de las solicitudes como JSON
 app.use(express.json());
-
-// Ruta principal para servir index.html
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
 
 // Webhook para recibir las notificaciones de transacciones de Onramper
 app.post('/webhook', (req, res) => {
@@ -67,14 +60,8 @@ app.get('/currency', async (req, res) => {
   }
 });
 
-// Endpoint para verificar que el servidor está funcionando
-app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'OK', message: 'Server is running' });
-});
-
 // Iniciar servidor en el puerto 3000
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  console.log(`Visit http://localhost:${PORT} to view the application`);
 });
