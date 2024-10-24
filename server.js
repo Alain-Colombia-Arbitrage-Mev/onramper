@@ -81,11 +81,11 @@ app.post('/gateway', async (req, res) => {
     const transactionData = {
       onramp: "payfura",
       source: "eur",
-      destination: "usdt",
+      destination: "btc",
       amount: 100,
-      type: "buy",
+      "type": "buy",
       paymentMethod: "creditcard",
-      network: "trc20",
+      network: "bitcoin",
       uuid: "6756256e-d07f-42f0-a873-4d992eec8a2e",
       partnerContext: "123-CLIENT-ORDER-ID-456",
       originatingHost: "buy.onramper.com",
@@ -124,6 +124,7 @@ app.post('/gateway', async (req, res) => {
     res.status(200).json(response);
   } catch (error) {
     console.error('Error en la transacción:', error.message);
+
     throw error;
   }
 
