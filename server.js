@@ -47,7 +47,7 @@ app.get('/currency', async (req, res) => {
   try {
     const response = await axios.get('https://api.onramper.com/supported', {
       headers: {
-        'Authorization': 'pk_prod_01HETEQF46GSK6BS5JWKDF31BT' // API key en el header
+        'Authorization': 'pk_prod_01J8SF5F5EWYY7Z6W7AV1KW1Q5' // API key en el header
       },
       params: { type } // Parámetro opcional con valor por defecto 'buy'
     });
