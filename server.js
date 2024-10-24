@@ -123,7 +123,7 @@ app.post('/gateway', async (req, res) => {
   
     res.status(200).json(response);
   } catch (error) {
-    console.error('Error en la transacción:', error.response?.data || error.message);
+    console.error('Error en la transacción:', error.message);
     throw error;
   }
 
