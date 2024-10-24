@@ -78,12 +78,14 @@ app.post('/gateway', async (req, res) => {
   console.log('gateway oonramper data received:', req.body);
   try {
 
-    const transactionData = {
-      onramp: "payfura",
+    const transactionData =  {}
+    transactionData.payload = {
+
+      onramp: "sardine",
       source: "eur",
       destination: "btc",
       amount: 100,
-      "type": "buy",
+      type: "buy",
       paymentMethod: "creditcard",
       network: "bitcoin",
       uuid: "6756256e-d07f-42f0-a873-4d992eec8a2e",
@@ -123,9 +125,13 @@ app.post('/gateway', async (req, res) => {
   
     res.status(200).json(response);
   } catch (error) {
-    console.error('Error en la transacción:', error.message);
+    response.message = error.message
+    response.status = false
+    response.data = []
 
-    throw error;
+    console.error('Error en la transacción:', error.message);
+    res.status(200).json(response);
+    // throw error;
   }
 
 });
