@@ -40,6 +40,36 @@ app.post('/webhook', (req, res) => {
   res.status(200).send('Webhook received');
 });
 
+
+app.post('/gateway', (req, res) => {
+  const {
+      user, 
+      email,
+      amount,
+      currency, 
+      wallet,
+      payload,
+      status
+  } = req.body;
+
+  const response = {}
+  // Log para verificar que los datos han sido recibidos correctamente
+  console.log('gateway oonramper data received:', req.body);
+
+  response.message = "The Onramper gateway accept your transaction"
+  response.status = true
+  response.data = req.body
+  // Procesar los datos como guardar en base de datos o notificar de algún evento
+  // if (status === 'completed') {
+  //   console.log(`Transaction ${transactionId} completed.`);
+  // } else if (status === 'failed') {
+  //   console.log(`Transaction ${transactionId} failed.`);
+  // }
+
+  // Respuesta 200 OK para confirmar que recibimos el webhook
+  res.status(200).json(response);
+});
+
 // Endpoint para obtener las monedas soportadas
 app.get('/currency', async (req, res) => {
   const type = req.query.type || 'buy'; // Parametro opcional 'buy' o 'sell'
